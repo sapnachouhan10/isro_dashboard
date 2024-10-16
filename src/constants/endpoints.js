@@ -1,0 +1,1 @@
+export const BASEURL = "https://isro.vercel.app/api"
