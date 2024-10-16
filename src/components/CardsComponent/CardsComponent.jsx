@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 const DashboardCards = [
   { title: 'Spacecrafts', path: '/spacecrafts' },
   { title: 'Launchers', path: '/launchers' },
-  { title: 'Customer Satellites', path: '/satellites' },
+  { title: 'Customer Satellites', path: '/customer_satellites' },
   { title: 'Centres', path: '/centres' },
 ];
 const CardsContainer = () => {
