@@ -33,10 +33,361 @@
   }
 }
 
+/* src/components/Card.css */
 .card {
-  padding: 2em;
+  background: linear-gradient(145deg, #2b1055, #7597de);
+  background-size: cover;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  text-align: center;
+  width: 220px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  position: relative;
+  overflow: hidden;
 }
 
-.read-the-docs {
-  color: #888;
+/* Add a subtle starry effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(white, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.1;
+  animation: rotate 30s linear infinite;
+}
+
+/* Animate the starry background for a space effect */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+
+.card h3 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  z-index: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 80%;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.2);
+  filter: blur(40px);
+  transform: rotate(45deg);
+}
+
+.card:hover::after {
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease-in-out;
+}
+
+
+
+
+/* src/components/CardContainer.css */
+
+.card-container {
+  display: flex;  
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #000428, #004e92);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background: #0d1b2a; /* Dark space-like background */
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.spacecraft-card {
+  background: linear-gradient(135deg, #1a237e, #0d47a1, #1b5e20);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 75, 175, 0.5);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  width: 220px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  position: relative;
+  background-size: 200% 200%;
+  animation: gradient-move 4s infinite alternate;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.spacecraft-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 150, 255, 0.7);
+}
+
+.spacecraft-card h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 0;
+  z-index: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+
+/* src/components/SpacecraftList.css */
+.spacecraft-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: radial-gradient(circle, rgba(0, 15, 36, 0.95) 0%, rgba(0, 45, 77, 0.85) 60%, #0d1b2a 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 50, 100, 0.3);
+}
+
+
+
+/* laoding container */
+
+/* src/components/Loading.css */
+.loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0d1b2a; /* Dark space-like background */
+  position: relative;
+}
+
+.orbit {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: spin 3s linear infinite;
+}
+
+.planet {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #29b6f6, #0277bd); /* Planet color */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(41, 182, 246, 0.6), 0 0 20px rgba(2, 119, 189, 0.8);
+}
+
+.satellite {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ffeb3b, #fbc02d); /* Satellite color */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: orbit 3s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 235, 59, 0.7), 0 0 15px rgba(251, 192, 45, 1);
+}
+
+.loader-text {
+  color: #ffffff;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(70px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(70px) rotate(-360deg);
+  }
+}
+
+
+
+/* src/components/Centres.css */
+
+.centres-container {
+  padding: 20px;
+}
+
+.centres-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/* src/components/CentreCard.css */
+
+.centre-card {
+  background: linear-gradient(135deg, #6b8de6, #4c77d4);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  color: white;
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.centre-card:hover {
+  transform: scale(1.05);
+}
+
+.centre-name {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.centre-place,
+.centre-state {
+  margin: 5px 0;
+}
+
+
+
+/* src/components/SatelliteCard/SatelliteCard.css */
+.satellite-card {
+  background: linear-gradient(135deg, #0e1a35, #1c2b59);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.satellite-card:hover {
+  transform: translateY(-5px);
+}
+
+.view-more-button {
+  background-color: #1e90ff;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-button:hover {
+  background-color: #3aa1ff;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #2a3b5c;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: left;
+  color: #ffffff;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+  color: #1e90ff;
+}
+
+.close-button {
+  background-color: #ff4b4b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #ff6b6b;
 }
