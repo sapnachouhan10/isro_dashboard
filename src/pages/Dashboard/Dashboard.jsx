@@ -1,13 +1,10 @@
 import React from 'react'
-import useFetch from '../../hooks/useFetch'
+import CardsContainer from '../../components/CardsComponent/CardsComponent'
 
 const Dashboard = () => {
-  const {data, error,loading} = useFetch(`spacecrafts`)
-  console.log(data,error,loading)
+
   return (
-    <div>
-        Dashboard
-    </div>
+    <CardsContainer />
   )
 }
 
