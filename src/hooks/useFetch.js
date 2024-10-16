@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react'
 import { BASEURL } from '../constants/endpoints'
+import { toast } from 'sonner'
 
 const useFetch = (url) => {
     const [data,setData] = useState(null)
@@ -12,7 +13,7 @@ const useFetch = (url) => {
             setLoading(true)
             const response = await fetch(`${BASEURL}/${url}`)
             if (!response.ok) {
-               throw new Error(`Error: Error while fetching the data ${response.status}`);
+               throw new Error(`Error: Error while fetching the data`);
              }
             const data = await response.json()
             if(data && data[url]){
@@ -23,6 +24,7 @@ const useFetch = (url) => {
         }catch(err){
             setError(err)
             setLoading(false)
+            toast.error(err?.message || "Error: failed to fetch Data ")
         }
    
     }
