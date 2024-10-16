@@ -2,6 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import SpaceCrafts from "./pages/SpaceCrafts/SpaceCrafts";
+import Launchers from "./pages/Launchers/Launchers";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,9 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "about",
-    element: <div>About</div>,
+    path: "/launchers",
+    element: (
+    <Launchers />
+    ),
   },
 ]);
