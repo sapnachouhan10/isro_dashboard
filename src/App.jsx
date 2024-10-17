@@ -1,15 +1,14 @@
-import { Outlet } from 'react-router';
-import './App.css'
-import { Toaster } from 'sonner';
+import { Outlet } from "react-router";
+import "./App.scss";
+import { Toaster } from "sonner";
 
 function App() {
-
   return (
-    <div>
+    <div className="page-container">
       <Toaster />
       <Outlet />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

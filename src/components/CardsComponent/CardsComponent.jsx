@@ -1,28 +1,45 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
+import React from "react";
+import { useNavigate } from "react-router";
+import icSpacecrafts from "../../assets/spacecrafts.png";
+import icLaunchers from "../../assets/launchers.png";
+import icSatellites from "../../assets/satellites.png";
+import icCentres from "../../assets/centres.png";
 
 const DashboardCards = [
-  { title: 'Spacecrafts', path: '/spacecrafts' },
-  { title: 'Launchers', path: '/launchers' },
-  { title: 'Customer Satellites', path: '/customer_satellites' },
-  { title: 'Centres', path: '/centres' },
+  { title: "Spacecrafts", path: "/spacecrafts", icon: icSpacecrafts },
+  { title: "Launchers", path: "/launchers", icon: icLaunchers },
+  {
+    title: "Customer Satellites",
+    path: "/customer_satellites",
+    icon: icSatellites,
+  },
+  { title: "Centres", path: "/centres", icon: icCentres },
 ];
 const CardsContainer = () => {
-
   const navigate = useNavigate();
 
   const handleClick = (path) => {
     navigate(path);
   };
 
-
   return (
-    <div className="card-container">
-      {DashboardCards?.map((card, index) => (
-        <div key={index} className="card" onClick={()=>handleClick(card.path)}>
-          <h3>{card?.title}</h3>
-        </div>
-      ))}
+    <div className="dashboard-wrapper">
+      <div className="card-container dashboard-container">
+        {DashboardCards?.map((card, index) => (
+          <div
+            key={index}
+            className="card-col-50"
+            onClick={() => handleClick(card.path)}
+          >
+            <div className="card">
+              <div className="card-icon">
+                <img src={card.icon} alt="icon" />
+              </div>
+              <h3 className="card-title">{card?.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
