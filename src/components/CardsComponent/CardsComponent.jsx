@@ -15,6 +15,7 @@ const DashboardCards = [
   },
   { title: "Centres", path: "/centres", icon: icCentres },
 ];
+
 const CardsContainer = () => {
   const navigate = useNavigate();
 
@@ -29,11 +30,19 @@ const CardsContainer = () => {
           <div
             key={index}
             className="card-col-50"
+            role="button"
+            tabIndex={0}
             onClick={() => handleClick(card.path)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleClick(card.path);
+              }
+            }}
+            aria-label={`Navigate to ${card.title}`}
           >
             <div className="card">
               <div className="card-icon">
-                <img src={card.icon} alt="icon" />
+                <img src={card.icon} alt={`${card.title} icon`} />
               </div>
               <h3 className="card-title">{card?.title}</h3>
             </div>
