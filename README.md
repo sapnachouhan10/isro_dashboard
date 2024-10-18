@@ -30,6 +30,10 @@ Run the development server:
 bash
 npm run dev
 
+Run Unit test:
+bash
+npm test
+
 Libraries and Tools Used
 This project uses the following libraries and tools:
 

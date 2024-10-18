@@ -1,10 +1,12 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import SpaceCrafts from "./pages/SpaceCrafts/SpaceCrafts";
 import Launchers from "./pages/Launchers/Launchers";
 import CustomerSatellites from "./pages/CustomerSatellites/CustomerSatellites";
 import Centres from "./pages/Centres/Centres";
-import App from "./App";
+
 
 export const router = createBrowserRouter([
   {

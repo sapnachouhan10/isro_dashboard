@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import useSearch from "../../hooks/useSearch";
+import BackButton from "../../components/BackButton/Button";
 
-const CustomerSatellites = () => {
-  const { data, loading, error } = useFetch(`customer_satellites`);
-  const { filteredData, searchQuery, handleSearch } = useSearch(data, "id");
+interface Satellite {
+  id: string;
+  country: string;
+  launch_date: string;
+  mass: number;
+  launcher: string;
+}
 
-  const [selectedSatellite, setSelectedSatellite] = useState(null);
+const CustomerSatellites: React.FC = () => {
+  const { data, loading, error } = useFetch<Satellite[]>("customer_satellites");
+  const { filteredData, searchQuery, handleSearch } = useSearch<Satellite>(
+    data || []
+  );
 
-  const handleViewMore = (satellite) => {
+  const [selectedSatellite, setSelectedSatellite] = useState<Satellite | null>(
+    null
+  );
+
+  const handleViewMore = (satellite: Satellite) => {
     setSelectedSatellite(satellite);
   };
 
@@ -26,7 +39,10 @@ const CustomerSatellites = () => {
 
   return (
     <div>
-      <h2 className="page-title text-white">Customer Satellites</h2>
+      <div className="page-heading-bar">
+        <BackButton />
+        <h2 className="page-title text-white">Customer Satellites</h2>
+      </div>
       <label htmlFor="satellite-search" className="visually-hidden">
         Search Satellites
       </label>
@@ -44,7 +60,7 @@ const CustomerSatellites = () => {
         role="list"
         aria-label="List of customer satellites"
       >
-        {filteredData?.map((satellite) => (
+        {filteredData.map((satellite) => (
           <div className="card-col-33" role="listitem" key={satellite.id}>
             <div className="card satelite-card">
               <h3 className="card-sub-title">{satellite.id}</h3>

@@ -1,13 +1,23 @@
-import React from "react";
-import useFetch from "../../hooks/useFetch";
-import Loading from "../../components/Loading/Loading";
+import React from 'react';
+import useFetch from '../../hooks/useFetch';
+import Loading from '../../components/Loading/Loading';
+import BackButton from '../../components/BackButton/Button';
 
-const Centres = () => {
-  const { data, error, loading } = useFetch(`centres`);
+interface Centre {
+  name: string;
+  Place: string;
+  State: string;
+}
+
+const Centres: React.FC = () => {
+  const { data, error, loading } = useFetch<Centre[]>('centres');
 
   return (
     <div className="page-wrapper">
-      <h2 className="page-title text-white">ISRO Centres</h2>
+      <div className="page-heading-bar">
+        <BackButton />
+        <h2 className="page-title text-white">ISRO Centres</h2>
+      </div>
 
       <div className="table-container custom-scrollbar">
         <table>
@@ -22,7 +32,7 @@ const Centres = () => {
           <tbody>
             {!loading &&
               data &&
-              data?.map((centre, index) => (
+              data.map((centre, index) => (
                 <tr key={index}>
                   <td className="centre-name" aria-label={`Centre name ${centre.name}`}>
                     {centre.name}
